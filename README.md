@@ -126,15 +126,15 @@ Special thanks to these guys for their amazing tool
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/michael-arawole/synote.svg?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/michael-arawole/synote.svg?style=for-the-badge&1
 [contributors-url]: https://github.com/michael-arawole/synote/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/michael-arawole/synote.svg?style=for-the-badge
+[forks-shield]: https://img.shields.io/github/forks/michael-arawole/synote.svg?style=for-the-badge&1
 [forks-url]: https://github.com/michael-arawole/synote/network/members
-[stars-shield]: https://img.shields.io/github/stars/michael-arawole/synote.svg?style=for-the-badge
+[stars-shield]: https://img.shields.io/github/stars/michael-arawole/synote.svg?style=for-the-badge&1
 [stars-url]: https://github.com/michael-arawole/synote/stargazers
-[issues-shield]: https://img.shields.io/github/issues/michael-arawole/synote.svg?style=for-the-badge
+[issues-shield]: https://img.shields.io/github/issues/michael-arawole/synote.svg?style=for-the-badge&1
 [issues-url]: https://github.com/michael-arawole/synote/issues
-[license-shield]: https://img.shields.io/github/license/michael-arawole/synote.svg?style=for-the-badge
+[license-shield]: https://img.shields.io/github/license/michael-arawole/synote.svg?style=for-the-badge&1
 [license-url]: https://github.com/michael-arawole/synote/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/michaelarawole/
