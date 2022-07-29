@@ -1,0 +1,26 @@
+#// +------------------------------------------------------------------------+
+# // | @author        : Michael Arawole (Logad Networks)
+# // | @author_url    : https://www.logad.net
+# // | @author_email  : logadscripts@gmail.com
+# // | @date          : 17 Jul, 2022 11:02 AM
+# // +------------------------------------------------------------------------+
+# // | 2022 Logad Networks (Open source project)
+# // +------------------------------------------------------------------------+
+
+## Important
+RewriteEngine on
+
+## Disable directory lisrrting
+Options -Indexes
+
+# HTTPS ##
+# RewriteCond %{HTTPS} off
+# RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R,L]
+
+## Block direct access to backend folder
+RewriteRule ^backend/(.*)$ ./ [F]
+
+# Rewrite all paths to frontend folder
+RewriteCond %{REQUEST_URI} !/frontend/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ frontend/$1 [L]

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Login - Synote</title>
+        <!-- CSS files -->
+        <link href="./dist/css/tabler.min.css" rel="stylesheet" />
+        <link href="./dist/css/tabler-vendors.min.css" rel="stylesheet" />
+        <link href="./dist/css/demo.min.css" rel="stylesheet" />
+    </head>
+    <body class="border-top-wide border-primary d-flex flex-column">
+        <div class="page page-center">
+            <div class="container-tight py-4">
+                <div class="text-center mb-4">
+                    <a href="javascript:" class="navbar-brand navbar-brand-autodark"><img src="./static/synote.svg" height="36" alt="" /></a>
+                </div>
+                <div class="card card-md">
+                    <div id="loginDiv" class="card-body">
+                        <form id="loginForm" autocomplete="off">
+                            <h2 class="card-title text-center mb-4">Login to your account</h2>
+                            <div class="mb-3">
+                                <label class="form-label">Username</label>
+                                <input type="text" name="username" class="form-control" placeholder="Enter username" autocomplete="off" />
+                            </div>
+                            <div class="mb-2">
+                                <label class="form-label">
+                                    Password
+                                </label>
+                                <div class="input-group input-group-flat">
+                                    <input type="password" name="password" class="form-control" placeholder="Password" autocomplete="off" />
+                                    <span class="input-group-text">
+                                        <a href="#" class="link-secondary" title="Show password" data-bs-toggle="tooltip">
+                                            <!-- Download SVG icon from http://tabler-icons.io/i/eye -->
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                <circle cx="12" cy="12" r="2" />
+                                                <path d="M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7" />
+                                            </svg>
+                                        </a>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="mb-2">
+                                <label class="form-check">
+                                    <input type="checkbox" class="form-check-input" />
+                                    <span class="form-check-label">Remember me on this device</span>
+                                </label>
+                            </div>
+                            <div class="form-footer">
+                                <button type="submit" class="btn btn-primary w-100">Sign in</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="card-body" id="scanDiv" style="display: none;">
+                        <div id="scanLoading" class="text-center">
+                            <h4>Setting up scan to login...</h4>
+                        </div>
+                        <div id="scanResult" class="text-center" style="display: none;">
+                            <input type="hidden" id="loginSession"/>
+                            <h2 class="card-title">Scan the code below to continue</h2>
+                            <img class="img-fluid" src="" id="scanImage" alt="Scan Image"/>
+                            <p id="scanMsg" class="mt-2"></p>
+                        </div>
+                    </div>
+                    <div class="hr-text">or</div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <a href="javascript:void(0)" id="scanToLogin" class="btn btn-white w-100">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="icon icon-tabler icon-tabler-scan"
+                                        width="24"
+                                        height="24"
+                                        viewBox="0 0 24 24"
+                                        stroke-width="2"
+                                        stroke="currentColor"
+                                        fill="none"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    >
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path d="M4 7v-1a2 2 0 0 1 2 -2h2"></path>
+                                        <path d="M4 17v1a2 2 0 0 0 2 2h2"></path>
+                                        <path d="M16 4h2a2 2 0 0 1 2 2v1"></path>
+                                        <path d="M16 20h2a2 2 0 0 0 2 -2v-1"></path>
+                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    </svg>
+                                    Scan to login
+                                </a>
+                                <a href="javascript:void(0)" id="backToLogin" class="btn btn-white w-100" style="display:none">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M9 13l-4 -4l4 -4m-4 4h11a4 4 0 0 1 0 8h-1"></path></svg>
+                                    Back to login
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center text-muted mt-3">Don't have account yet? <a href="./register.html" tabindex="-1">Register</a></div>
+            </div>
+        </div>
+        <!-- Libs JS -->
+        <!-- Tabler Core -->
+        <script src="./dist/js/tabler.min.js" defer></script>
+        <script src="./dist/js/demo.min.js" defer></script>
+        <script src="./dist/libs/jquery/jquery.min.js"></script>
+
+        <script type="text/javascript">
+            function page_error(message) {
+                alert(message);
+            }
+
+            function checkScanStatus(sessionID) {
+                var scanHelp = 'Click on connect on the other device';
+                if ($("#scanMsg").text() == scanHelp) {
+                    $("#scanMsg").text('Waiting for scan...');
+                } else {
+                    $("#scanMsg").text(scanHelp);
+                }
+
+                // request
+                $.ajax({
+                    url: 'api/check-scan-status',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        sessionID : sessionID
+                    }
+                })
+                .done(function(response) {
+                    if (response.error === false) {
+                        if (response.loginSuccessful === true) {
+                            // alert(response.message);
+                            if (typeof scanCheckInterval !== 'undefined') {
+                                // remove old interval function
+                                clearInterval(scanCheckInterval);
+                            }
+                            localStorage.setItem('synoteUserID', response.userID);
+                            window.location.replace('./');
+                        }
+                    }
+                })
+                .fail(function() {
+                    page_error("Something went wrong");
+                })
+            }
+            // Scan to login
+            function setupScanToLogin() {
+                $("#scanResult").slideUp('fast');
+                $("#scanLoading").slideDown('fast');
+
+                $.ajax({
+                    url: 'api/initScanToLogin',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        UA : navigator.userAgent
+                    }
+                })
+                .done(function(response) {
+                    if (response.error === false) {
+                        $("#loginSession").val(response.sessionID);
+                        var qrData = '{"sessionID":"'+response.sessionID+'"}';
+                        // Generate QR code
+                        $("#scanImage").attr("src", "https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl="+ qrData +"&choe=UTF-8");
+                        $("#scanResult").slideDown();
+                        $("#scanLoading").slideUp();
+
+                        // Setup checker
+                        if (typeof scanCheckInterval !== 'undefined') {
+                            // remove old interval function
+                            clearInterval(scanCheckInterval);
+                        }
+                        scanCheckInterval = setInterval(function () {
+                            checkScanStatus(response.sessionID);
+                        }, 3000);
+                    } else {
+                        page_error(response.message)
+                    }
+                })
+                .fail(function() {
+                    page_error("Something went wrong");
+                })
+            }
+            $(document).ready(function() {
+                $("#scanToLogin").click(function() {
+                    $("#loginDiv").slideUp();
+                    $("#scanDiv").slideDown();
+                    setupScanToLogin();
+                    $(this).hide();
+                    $("#backToLogin").show();
+                });
+                $("#backToLogin").click(function() {
+                    $("#loginDiv").slideDown();
+                    $("#scanDiv").slideUp();
+                    $(this).hide();
+                    $("#scanToLogin").show();
+                    if (typeof scanCheckInterval !== 'undefined') {
+                        // remove old interval function
+                        clearInterval(scanCheckInterval);
+                    }
+                });
+
+                $("#loginForm").submit(function(event) {
+                    event.preventDefault();
+                    var btn = $(this).find('[type=submit]');
+                    var btn_text = btn.text();
+                    btn.addClass('disabled');
+                    btn.attr('disabled', true);
+                    btn.text('please wait');
+
+                    var formData = new FormData($(this)[0]);
+                    $.ajax({
+                        url: 'api/login',
+                        type: "POST",
+                        data: formData,
+                        dataType: "json",
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        error: function (xhr) {
+                            if (xhr.status == 404 || xhr.status == 500) {
+                                page_error("An unexpected error seems to have occurred. Now that we know, we're working to fix it ☺. ERROR : "+xhr.status);
+                            }
+                        }
+                    })
+                    .done(function(response) {
+                        if (response.error === false) {
+                            localStorage.setItem('synoteUserID', response.userID);
+                            window.location.replace('./');
+                        } else {
+                            page_error(response.message);
+                        }
+                    })
+                    .fail(function(xhr) {
+                        console.log(xhr);
+                    })
+                    .always(function() {
+                        btn.text(btn_text);
+                        btn.removeClass("disabled");
+                        btn.removeAttr("disabled");
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>

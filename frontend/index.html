@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Synote</title>
+        <!-- CSS files -->
+        <link href="./dist/css/tabler.min.css" rel="stylesheet" />
+        <link href="./dist/css/tabler-vendors.min.css" rel="stylesheet" />
+        <link href="./dist/css/demo.min.css" rel="stylesheet" />
+        <link rel="stylesheet" type="text/css" href="./dist/libs/contextmenu/ContextMenu.css">
+        <link rel="stylesheet" type="text/css" href="./dist/libs/toastr/toastr.min.css">
+
+        <style type="text/css">
+            input.transparent-input {
+                background-color:rgba(0,0,0,0) !important;
+                border:none !important;
+                box-shadow: none !important;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="page">
+            <header class="navbar navbar-expand-md navbar-light d-print-none">
+                <div class="container-xl">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
+                        <a href=".">
+                            <img src="./static/synote.svg" width="110" height="32" alt="Tabler" class="navbar-brand-image" />
+                        </a>
+                    </h1>
+                    <div class="navbar-nav flex-row order-md-last">
+                        <div class="nav-item d-none d-md-flex me-3">
+                            <div class="btn-list">
+                                <a href="https://github.com/michael-arawole/synote" class="btn" target="_blank" rel="noreferrer">
+                                    <!-- Download SVG icon from http://tabler-icons.io/i/brand-github -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                        <path
+                                            d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5"
+                                        />
+                                    </svg>
+                                    Source code
+                                </a>
+                            </div>
+                        </div>
+                        <div class="nav-item dropdown">
+                            <a href="?theme=dark" class="nav-link px-0 hide-theme-dark" title="Enable dark mode" data-bs-toggle="tooltip" data-bs-placement="bottom">
+                                <!-- Download SVG icon from http://tabler-icons.io/i/moon -->
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+                                </svg>
+                            </a>
+                            <a href="?theme=light" class="nav-link px-0 hide-theme-light" title="Enable light mode" data-bs-toggle="tooltip" data-bs-placement="bottom">
+                                <!-- Download SVG icon from http://tabler-icons.io/i/sun -->
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <circle cx="12" cy="12" r="4" />
+                                    <path d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <div class="navbar-expand-md d-none">
+                <div class="collapse navbar-collapse" id="navbar-menu">
+                    <div class="navbar navbar-light">
+                        <div class="container-xl">
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="./index.html">
+                                        <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                            <!-- Download SVG icon from http://tabler-icons.io/i/home -->
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                <polyline points="5 12 3 12 12 3 21 12 19 12" />
+                                                <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+                                                <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+                                            </svg>
+                                        </span>
+                                        <span class="nav-link-title">
+                                            Home
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="my-2 my-md-0 flex-grow-1 flex-md-grow-0 order-first order-md-last">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="page-wrapper">
+                <div class="container-xl">
+                    <!-- Page title -->
+                    <div class="page-header d-print-none">
+                        <div class="row g-2 align-items-center">
+                            <div class="col">
+                                
+                            </div>
+                            <!-- Page title actions -->
+                            <div class="col-auto ms-auto d-print-none">
+                                <a href="javascript:" id="connectDeviceBtn" class="btn btn-dark">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plug-connected" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                       <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                       <path d="M7 12l5 5l-1.5 1.5a3.536 3.536 0 1 1 -5 -5l1.5 -1.5z"></path>
+                                       <path d="M17 12l-5 -5l1.5 -1.5a3.536 3.536 0 1 1 5 5l-1.5 1.5z"></path>
+                                       <path d="M3 21l2.5 -2.5"></path>
+                                       <path d="M18.5 5.5l2.5 -2.5"></path>
+                                       <path d="M10 11l-2 2"></path>
+                                       <path d="M13 14l-2 2"></path>
+                                    </svg>
+                                    Connect
+                                </a>
+                                <a href="javascript:" class="btn btn-primary newNoteBtn">
+                                    <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    </svg>
+                                    New note
+                                </a>
+                                <!-- <a href="javascript:" class="btn btn-info" onclick="loadNotes()">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-refresh" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                       <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                       <path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4"></path>
+                                       <path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4"></path>
+                                    </svg>
+                                    Refresh
+                                </a> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container-xl my-3">
+                    <form id="searchNotesForm">
+                        <div class="input-icon">
+                            <span class="input-icon-addon">
+                                <!-- Download SVG icon from http://tabler-icons.io/i/search -->
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <circle cx="10" cy="10" r="7" />
+                                    <line x1="21" y1="21" x2="15" y2="15" />
+                                </svg>
+                            </span>
+                            <input type="text" value="" class="form-control" placeholder="Search notes" aria-label="Search in website" />
+                        </div>
+                    </form>
+                </div>
+
+                <div class="page-body">
+                    <div class="container-xl" id="notesPlaceholder">
+                        <div class="row row-cards" data-masonry='{"percentPosition": true }'>
+                            <div class="col-sm-6 col-lg-4">
+                                <div class="card">
+                                    <div class="card-body placeholder-glow">
+                                        <div class="placeholder col-9 mb-3"></div>
+                                        <div class="placeholder placeholder-xs col-10"></div>
+                                        <div class="placeholder placeholder-xs col-12"></div>
+                                        <div class="placeholder placeholder-xs col-11"></div>
+                                        <div class="placeholder placeholder-xs col-8"></div>
+                                        <div class="placeholder placeholder-xs col-10"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-4">
+                                <div class="card">
+                                    <div class="card-body placeholder-glow">
+                                        <div class="placeholder col-9 mb-3"></div>
+                                        <div class="placeholder placeholder-xs col-10"></div>
+                                        <div class="placeholder placeholder-xs col-12"></div>
+                                        <div class="placeholder placeholder-xs col-11"></div>
+                                        <div class="placeholder placeholder-xs col-8"></div>
+                                        <div class="placeholder placeholder-xs col-10"></div>
+                                        <div class="placeholder placeholder-xs col-10"></div>
+                                        <div class="placeholder placeholder-xs col-10"></div>
+                                        <div class="placeholder placeholder-xs col-10"></div>
+                                        <div class="placeholder placeholder-xs col-10"></div>
+                                        <div class="placeholder placeholder-xs col-10"></div>
+                                        <div class="placeholder placeholder-xs col-10"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-4">
+                                <div class="card">
+                                    <div class="card-body placeholder-glow">
+                                        <div class="placeholder col-9 mb-3"></div>
+                                        <div class="placeholder placeholder-xs col-10"></div>
+                                        <div class="placeholder placeholder-xs col-12"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container-xl" id="notesDiv">
+                        <div class="row row-cards">
+                        </div>
+                    </div>
+
+                    <div class="container-xl d-flex flex-column justify-content-center d-none" id="notesEmpty">
+                        <div class="empty">
+                            <div class="empty-img"><img src="./static/illustrations/undraw_printing_invoices_5r4r.svg" height="128" alt="" /></div>
+                            <p class="empty-title">No notes found</p>
+                            <p class="empty-subtitle text-muted">
+                                Looks lke there's nothing here. Try adding!
+                            </p>
+                            <div class="empty-action">
+                                <a href="javascript:" class="btn btn-primary newNoteBtn">
+                                    <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                        <line x1="12" y1="5" x2="12" y2="19" />
+                                        <line x1="5" y1="12" x2="19" y2="12" />
+                                    </svg>
+                                    Add Note
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <footer class="footer footer-transparent d-print-none">
+                <div class="container-xl">
+                    <div class="row text-center align-items-center flex-row-reverse">
+                        <div class="col-lg-auto ms-lg-auto">
+                            <ul class="list-inline list-inline-dots mb-0">
+                                <li class="list-inline-item"><a href="./docs/index.html" class="link-secondary">Documentation</a></li>
+                                <li class="list-inline-item"><a href="https://github.com/tabler/tabler" target="_blank" class="link-secondary" rel="noopener">Source code</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-12 col-lg-auto mt-3 mt-lg-0">
+                            <ul class="list-inline list-inline-dots mb-0">
+                                <li class="list-inline-item">
+                                    Created 2022,
+                                    <a href="javascript:" class="link-secondary">Synote</a>.
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="https://github.com/michael-arawole" class="link-secondary" rel="noopener">
+                                        Michael Arawole
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+
+        <!-- New Note modal -->
+        <div class="modal modal-blur fade" id="newNoteModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">New note</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form id="newNoteForm">
+                        <div class="modal-body p-2">
+                            <div class="row mb-3 align-items-end">
+                                <div class="col">
+                                    <input type="text" name="title" class="form-control transparent-input" placeholder="Title"/>
+                                </div>
+                            </div>
+                            <div>
+                                <!-- <label class="form-label">Additional info</label> -->
+                                <textarea class="form-control" name="content" id="notesTextArea"></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Edit Note modal -->
+        <div class="modal modal-blur fade" id="editNoteModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Edit note</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form id="editNoteForm">
+                        <div class="modal-body p-2">
+                            <div class="row mb-3 align-items-end">
+                                <div class="col">
+                                    <input type="text" id="editNoteTitle" name="title" class="form-control transparent-input" placeholder="Title"/>
+                                </div>
+                            </div>
+                            <div>
+                                <textarea class="form-control" id="notesEditTextArea"></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="hidden" name="noteID" id="editNoteId" required>
+                            <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Connect device modal -->
+        <div class="modal modal-blur fade" id="connectDeviceModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Connect Device</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body p-2">
+                        <div class="col-12">
+                            <div class="card text-center mb-3">
+                                <div class="card-body">
+                                    <h5 class="card-title">Camera required</h5>
+                                    <p class="card-text">Enable Camera and scan QR Code for faster login</p>
+                                    <div id="qr-video-container" style="display: none;">
+                                        <center>
+                                            <video id="qr-video"></video>
+                                        </center>
+                                    </div>
+                                    <a href="javascript:void(0)" class="btn btn-primary" onclick="startQRScanner()"><i class="bx bx-camera" style="margin-top: -5px;"></i> Start Scan</a>
+                                    <a href="javascript:void(0)" style="display: none;" class="btn btn-primary" onclick="stopQRScanner()"><i class="bx bx-camera-off" style="margin-top: -5px;"></i> Stop Scan</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Libs JS -->
+        <script src="./dist/libs/jquery/jquery.min.js" defer></script>
+
+        <!-- TinyMCE -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.1.0/tinymce.min.js" integrity="sha512-dr3qAVHfaeyZQPiuN6yce1YuH7YGjtUXRFpYK8OfQgky36SUfTfN3+SFGoq5hv4hRXoXxAspdHw4ITsSG+Ud/g==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+
+        <!-- Card Masonry -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js" defer></script>
+
+        <!-- Tabler Core -->
+        <script src="./dist/js/tabler.min.js" defer></script>
+        <script src="./dist/js/demo.min.js" defer></script>
+        <script src="./dist/libs/contextmenu/ContextMenu.js" defer></script>
+        <script src="./dist/libs/toastr/toastr.min.js" defer></script>
+        <script>document.write("<script type='text/javascript' src='./dist/js/app.js?v=" + Date.now() + "' defer><\/script>");</script>
+
+        <script type="module">
+            import QrScanner from "./dist/libs/qr-scanner/qr-scanner.min.js";
+            const video = document.getElementById("qr-video");
+            const videoContainer = document.getElementById("qr-video-container");
+            const camQrResult = document.getElementById("cam-qr-result");
+            function setResult(result) {
+                stopQRScanner();
+                const decodedQr = JSON.parse(result.data);
+                $("#connecDeviceModal").modal('hide');
+
+                // request
+                $.ajax({
+                    url: 'api/connect-device',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        userID: localStorage.getItem('synoteUserID'),
+                        sessionID : decodedQr.sessionID
+                    }
+                })
+                .done(function(response) {
+                    if (response.error === false) {
+                        toastr.success(response.message);
+                        $("#connecDeviceModal").modal('hide');
+                    } else {
+                        page_error(response.message);
+                    }
+                })
+                .fail(function() {
+                    page_error("Something went wrong");
+                })
+            }
+            // ####### Web Cam Scanning #######
+            const scanner = new QrScanner(video, (result) => setResult(result), {
+                onDecodeError: (error) => {},
+                highlightScanRegion: true,
+                highlightCodeOutline: true,
+            });
+            var device_height = window.screen.height - 70;
+            var device_width = window.screen.width - 70;
+            // set height and width of video
+            document.getElementById("qr-video").style.width = "100%";
+            document.getElementById("qr-video").style.height = "auto";
+            // for debugging
+            window.scanner = scanner;
+        </script>
+
+    </body>
+</html>
