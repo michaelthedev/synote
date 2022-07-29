@@ -22,7 +22,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/michael-arawole/synote">
-    <img src="frontend/static/synote.svg" alt="Logo" width="auto" height="200">
+    <img src="frontend/static/synote.svg" alt="Logo" style="filter: brightness(0) invert(1);" width="30%" height="150">
   </a>
 
   <h3 align="center">synote</h3>
@@ -39,17 +39,16 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-
-[![Synote Screen Shot][product-screenshot]](https://demo.logad.net/synote)
-
-
-The projects includes the Postman API collection too
+The projects includes the Postman API documentation
 
 * [Postman Documentation](https://documenter.getpostman.com/view/10657913/UzXUPtsJ)
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Screenshot
-<img src="screenshots/dash.png" alt="Logo" width="auto">
+<p align="left">
+<img src="screenshots/dash.png" alt="Screenshot" height="400px">
+<img src="screenshots/login.png" alt="Screenshot" height="400px">
+</p>
 
 ### Built With
 * [PHP](https://php.net/)
