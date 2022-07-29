@@ -22,7 +22,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/michael-arawole/synote">
-    <img src="frontend/static/synote.svg" alt="Logo" style="filter: brightness(0) invert(1);" width="30%" height="150">
+    <img src="frontend/static/synote.svg" alt="Logo" style="filter: brightness(0) invert(1);" width="40%" height="150">
   </a>
 
   <h3 align="center">synote</h3>
