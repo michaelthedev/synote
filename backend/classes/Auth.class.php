@@ -86,7 +86,7 @@ class Auth extends DB {
 	}
 
 	## Check scan status ##
-	public static function checkScanStatus($sessionID) {
+	public static function checkScanStatus($sessionID): array {
 		$response['status'] = false;
 		$response['message'] = "No changes detected";
 
