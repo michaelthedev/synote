@@ -39,6 +39,16 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
+Features
+* Login / Signup
+* Connect device / Scan to login (Like WhatsApp web)
+* Add Note
+* Edit Note
+* Delete Note
+* Context Menu on right click / long press (for mobile)
+* Card Masonry
+* TinyMCE editor
+
 The projects includes the Postman API documentation
 
 * [Postman Documentation](https://documenter.getpostman.com/view/10657913/UzXUPtsJ)
