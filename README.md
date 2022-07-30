@@ -50,8 +50,8 @@ Features
 * TinyMCE editor
 
 Demo Login :
-Username : mikethedev
-Password : test
+* Username : mikethedev
+* Password : test
 
 The projects includes the Postman API documentation
 
