@@ -5,7 +5,7 @@
 // | @author_email  : logadscripts@gmail.com
 // | @date          : 17 Jul, 2022 11:01AM
 // +------------------------------------------------------------------------+
-// | Copyright (c) 2022 Logad Networks. All rights reserved.
+// | 2022 Logad Networks
 // +------------------------------------------------------------------------+
 
 
