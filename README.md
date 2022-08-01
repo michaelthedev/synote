@@ -49,6 +49,10 @@ Features
 * Card Masonry
 * TinyMCE editor
 
+Demo Login :
+* Username : mikethedev
+* Password : test
+
 The projects includes the Postman API documentation
 
 * [Postman Documentation](https://documenter.getpostman.com/view/10657913/UzXUPtsJ)
