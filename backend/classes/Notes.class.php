@@ -27,10 +27,12 @@ class Notes extends DB {
 		}
 
 		$title = $data['title'] ?? null;
+		$content_to_wrap = strip_tags(html_entity_decode($data['content']));
+		$extract = substr($content_to_wrap, 0, 310);
 		// Insert into database
 		$insertQuery = DB::RunQuery([
-			"query" => "INSERT INTO user_notes (user_id, title, content, date_created) VALUES (?, ?, ?, ?)",
-			"values" => [$account->id, $title, $data['content'], time()],
+			"query" => "INSERT INTO user_notes (user_id, title, content, extract, date_created) VALUES (?, ?, ?, ?, ?)",
+			"values" => [$account->id, $title, $data['content'], $extract, time()],
 			"returnConfirmation" => true
 		]);
 		if ($insertQuery === true) {
@@ -73,10 +75,12 @@ class Notes extends DB {
 		}
 		
 		$title = $data['title'] ?? null;
+		$content_to_wrap = strip_tags(html_entity_decode($data['content']));
+		$extract = substr($content_to_wrap, 0, 310);
 		// Update
 		$updateQuery = DB::RunQuery([
-			"query" => "UPDATE user_notes SET title = ?, content = ?, date_modified = ? WHERE id = ?",
-			"values" => [$title, $data['content'], time(), $note->id],
+			"query" => "UPDATE user_notes SET title = ?, content = ?, extract = ?, date_modified = ? WHERE id = ?",
+			"values" => [$title, $data['content'], $extract, time(), $note->id],
 			"returnConfirmation" => true
 		]);
 		if ($updateQuery === true) {
@@ -132,7 +136,7 @@ class Notes extends DB {
 	public static function byUser($user_id) {
 		$limit = 30;
 		$notes = DB::RunQuery([
-			"query" => "SELECT id, user_id, title, content, DATE(FROM_UNIXTIME(date_created)) as date_created, DATE(FROM_UNIXTIME(date_modified)) as date_modified FROM user_notes WHERE user_id = ? ORDER BY id DESC LIMIT $limit",
+			"query" => "SELECT id, user_id, title, content, extract, DATE(FROM_UNIXTIME(date_created)) as date_created, DATE(FROM_UNIXTIME(date_modified)) as date_modified FROM user_notes WHERE user_id = ? ORDER BY id DESC LIMIT $limit",
 			"values" => [$user_id]
 		]);
 		foreach ($notes as $note) {

@@ -75,7 +75,8 @@ function notesToHTML(notes) {
 			        if (note.title != '' && note.title != null) {
 			        	html += `<h3 class="card-title">`+note.title+`</h3>`;
 			        }
-		            html += `<div class="text-muted">`+note.content+`</div>
+					html += `<div id="extract" class="text-muted">`+note.extract+`</div>`;
+		            html += `<div class="text-muted2" hidden>`+note.content+`</div>
 		        </div>
 		    </div>
 		</div>`;
@@ -105,7 +106,7 @@ function initNotesContextMenu() {
 	            	if (noteCard.find('h3.card-title').length) {
 	            		noteContent += noteCard.find('h3.card-title').text() +"\n\n";
 	            	}
-	            	noteContent += noteCard.find('div.card-body>div.text-muted').text();
+	            	noteContent += noteCard.find('div.card-body>div.text-muted2').text();
 	            	console.log(noteContent);
 	            	copyToClipboard(noteContent);
 	            }
@@ -132,8 +133,11 @@ function initNotesContextMenu() {
 	            	console.log("delete clicked");
 	            	var clickTarget = $(e.target);
 	            	var targetElID = clickTarget.closest('ul[targetelid]').attr('targetelid');
+					console.log(targetElID);
 	            	var noteCard = $("#"+targetElID);
 	            	deleteNote(noteCard);
+					const notehtml = document.getElementById(targetElID);
+					notehtml.remove();
 	            }
 	        },
 	        // divider: "top" // top, bottom, top-bottom
@@ -156,7 +160,7 @@ function editNote(noteEl) {
 	tinymce.execCommand('mceRemoveEditor',true,"#notesEditTextArea");
 
 	// Set the textarea value to the note's html content
-	$("#notesEditTextArea").val(noteEl.find('div.card-body>div.text-muted').html());
+	$("#notesEditTextArea").val(noteEl.find('div.card-body>div.text-muted2').html());
 	// set note title
 	$("#editNoteTitle").val(noteEl.find('h3.card-title').text());
 	// Init tinymce
